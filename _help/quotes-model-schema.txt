@@ -1,0 +1,7 @@
+// quotes
+
+id: Unique // by default reqd
+updated: Date // by default reqd
+quote: String // reqd
+author: String // reqd
+tag:[''] 

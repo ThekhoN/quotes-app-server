@@ -1,0 +1,22 @@
+/*	mongo terminal	*/
+
+// show all available databases
+$ show dbs 
+
+// create(if it does not exist) and use a db
+$ use quotes
+
+// save something to create
+$ db.quotes.save({
+	quote: "Hey!",
+	author: "User",
+	tag: ["greeting"]
+});
+
+// show all entries in quotes
+$ db.quotes.find();
+
+// in case of error type - while saving "errmsg" : "E11000 duplicate key error collection: quotes.quotes index: updated_1 dup key: { : null }"
+$ db.quotes.getIndexes()
+$ db.quotes.dropIndex('updated_1')
+$ db.quotes.getIndexes()

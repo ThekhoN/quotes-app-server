@@ -1,0 +1,18 @@
+/*	GOAL	*/
+
+// Stage 01
+
+// Un-Auth'd User:
+// User can only access the following urls 
+// 		root route ~ www.awesome-quotes.com (shows the latest quotes by date)
+// Login to be able to edit her/his quotes
+
+// Auth'd User:
+// Once Logged in, redirect to www.awesome-quotes.com/quotes/author
+// 		show Edit Option at the top of the nav bar to turn ON Edit Mode
+// 		each quote component now becomes editable
+// 		make changes and then submit to save changes
+
+// Stage 02
+
+// Allow user to favorite and create her/his favorites collection
