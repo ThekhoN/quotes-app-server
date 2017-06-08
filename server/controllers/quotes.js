@@ -1,10 +1,10 @@
 // handle CRUD for quotes
-const Quotes = require('../models/quotes');
+const Quote = require('../models/quotes');
 
 const quotes = {
   // get
   getAllQuotes: (req, res, next) => {
-    Quotes.find({}, (err, quotes) => {
+    Quote.find({}, (err, quotes) => {
       if (err) {
         return next(err);
       } else {
@@ -13,7 +13,7 @@ const quotes = {
     });
   },
   getAllQuotesByDate: (req, res, next) => {
-    Quotes.find().sort({updated: -1}).exec((err, quotes) => {
+    Quote.find().sort({updated: -1}).exec((err, quotes) => {
       if (err) {
         return next(err);
       } else {
@@ -23,7 +23,7 @@ const quotes = {
   },
   getQuoteById: (req, res, next) => {
     const id = req.params._id;
-    Quotes.findOne({_id: id}, (err, quote) => {
+    Quote.findOne({_id: id}, (err, quote) => {
       if (err) {
         return next(err);
       } else {
@@ -33,7 +33,7 @@ const quotes = {
   },
   getQuotesByAuthor: (req, res, next) => {
     const author = req.params._author;
-    Quotes.find({author}, (err, quotes) => {
+    Quote.find({author}, (err, quotes) => {
       if (err) {
         return next(err);
       } else {
@@ -50,7 +50,7 @@ const quotes = {
     if (!quote || !author) {
       return res.status(422).send({error: 'quote and author are required'});
     }
-    Quotes.findOneAndUpdate({_id: id}, {$set: {quote, author, tag}}, {new: true}, (err, quote) => {
+    Quote.findOneAndUpdate({_id: id}, {$set: {quote, author, tag}}, {new: true}, (err, quote) => {
       if (!quote) {
         return res.status(422).send({error: 'quote with given id does not exist'});
       }
@@ -64,11 +64,11 @@ const quotes = {
   addQuote: (req, res, next) => {
     const quote = req.body.quote;
     const author = req.body.author;
-    const tag = req.body.tag ? req.body.tag : [];
+    const tag = req.body.tag || [];
     if (!quote || !author) {
       return res.status(422).send({error: 'quote and author are required'});
     }
-    const newQuote = new Quotes({quote, author, tag});
+    const newQuote = new Quote({quote, author, tag});
     newQuote.save((err) => {
       if (err) {
         return next(err);
@@ -79,7 +79,7 @@ const quotes = {
   // delete
   deleteQuoteById: (req, res, next) => {
     const id = req.params._id;
-    Quotes.find({_id: id}).remove().exec((err, quote) => {
+    Quote.find({_id: id}).remove().exec((err, quote) => {
       if (err) {
         return next(err);
       } else {
@@ -89,7 +89,7 @@ const quotes = {
   },
   deleteQuotesByAuthor: (req, res, next) => {
     const author = req.params._author;
-    Quotes.find({author}).remove().exec((err, quote) => {
+    Quote.find({author}).remove().exec((err, quote) => {
       if (err) {
         return next(err);
       } else {

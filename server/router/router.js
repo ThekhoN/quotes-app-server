@@ -12,7 +12,6 @@ module.exports = function router (app) {
   app.delete('/quote/:_id', quotes.deleteQuoteById);
   app.delete('/quotes/author/:_author', quotes.deleteQuotesByAuthor);
 
-  app.get('/signin', auth.signin);
   app.post('/signin', auth.signin);
   app.post('/signup', auth.signup);
 };
