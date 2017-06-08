@@ -1,4 +1,6 @@
-/*	mongo terminal	*/
+/*	mongo terminal		*/
+
+// QUOTES
 
 // show all available databases
 $ show dbs 
@@ -20,3 +22,8 @@ $ db.quotes.find();
 $ db.quotes.getIndexes()
 $ db.quotes.dropIndex('updated_1')
 $ db.quotes.getIndexes()
+
+
+// USERS
+
+// $ db.users.find()

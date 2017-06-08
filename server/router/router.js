@@ -1,5 +1,6 @@
 // define routes here
 const quotes = require('../controllers/quotes');
+const auth = require('../controllers/auth');
 
 module.exports = function router (app) {
   app.get('/', quotes.getAllQuotesByDate);
@@ -10,4 +11,8 @@ module.exports = function router (app) {
   app.post('/quote', quotes.addQuote);
   app.delete('/quote/:_id', quotes.deleteQuoteById);
   app.delete('/quotes/author/:_author', quotes.deleteQuotesByAuthor);
+
+  app.get('/signin', auth.signin);
+  app.post('/signin', auth.signin);
+  app.post('/signup', auth.signup);
 };
