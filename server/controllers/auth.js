@@ -38,7 +38,7 @@ const auth = {
       if (err) {
         return next(err);
       } else {
-        res.send(user);
+        return res.send({message: 'Welcome :)'});
       }
     });
   }
