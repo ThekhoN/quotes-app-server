@@ -13,8 +13,9 @@ const userSchema = new Schema({
   }
 });
 
-/*
-userSchema.pre('save', (next) => {
+// use bcrypt to generate salt
+// generate hash from password & save the hash
+userSchema.pre('save', function (next) {
   const user = this;
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {
@@ -31,16 +32,27 @@ userSchema.pre('save', (next) => {
 });
 
 // helper method for use on invocation
-userSchema.methods.comparePassword = (enteredPassword, callback) => {
+userSchema.methods.comparePassword = function (userEnteredPassword, callback) {
   const user = this;
-  bcrypt.compare(enteredPassword, user.password, (err, isMatch) => {
+  bcrypt.compare(userEnteredPassword, user.password, function (err, isMatch) {
     if (err) {
       return callback(err);
     }
     callback(null, isMatch);
   });
 };
-*/
+
+// userSchema.methods.comparePassword = (userEnteredPassword, callback) => {
+//   const user = this;
+//   console.log('userEnteredPassword: ', userEnteredPassword);
+//   console.log('this in comparePassword: ', this);
+//   bcrypt.compare(userEnteredPassword, user.password, function (err, isMatch) {
+//     if (err) {
+//       return callback(err);
+//     }
+//     callback(null, isMatch);
+//   });
+// };
 
 const User = mongoose.model('user', userSchema);
 module.exports = User;
